@@ -40,6 +40,20 @@ main section.categories-show {
         transition: all 0.3s;
       }
 
+      aside.badge {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        color: white;
+        background-color: rgb(229, 147, 138);
+        border-top-left-radius: 4px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 20px;
+        font-size: 0.8em;
+      }
+
       aside.price {
         position: absolute;
         top: 0;
