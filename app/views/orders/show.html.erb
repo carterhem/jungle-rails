@@ -2,8 +2,10 @@
 
   <header class="page-header">
     <h1>Order #<%= @order.id %></h1>
-    <h4>Placed by: <%= @order.email %></h4>
-     <h4>Order Total: <%= humanized_money_with_symbol @order[:total_cents] / 100.0 %></h4>
+    <h5>Placed by: <%= @order.email %></h5>
+    <h5>Number of Items: <%= @order.line_items.count() %></h5>
+    <h5>Order Total: <%= humanized_money_with_symbol @order[:total_cents] / 100.0 %></h5>
+
   </header>
 
 
