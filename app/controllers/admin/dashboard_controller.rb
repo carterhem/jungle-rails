@@ -3,7 +3,7 @@ class Admin::DashboardController < ApplicationController
   
   def show
     def index
-      @product = Product.all
+      @products = Product.all
     end
   end
 end
