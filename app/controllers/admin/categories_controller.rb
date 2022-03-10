@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  # http_basic_authenticate_with name: ENV['USERNAME'], password: ENV['PASSWORD']
+  http_basic_authenticate_with name: ENV['USERNAME'], password: ENV['PASSWORD']
   def index
     @categories = Category.order(id: :desc).all
     #Query: where product :category_id is equal to category id of category, THEN count
