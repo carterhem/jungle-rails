@@ -64,13 +64,21 @@ RSpec.describe User, type: :model do
       end
     end
 
+    context 'if the password/password_confirmation does not meet minimum character requirement (5)' do
+      it 'should not save' do
+        @user = User.new(first_name: "Joe", last_name: "Dirt", email:"joe@dirt.com", password: "pass", password_confirmation: "pass")
+        @user.save 
+        expect(@user.errors.full_messages).to include("Password is too short (minimum is 5 characters)", "Password confirmation is too short (minimum is 5 characters)")
+      end
+    end
+
     context 'emails must be unique' do
-      it 'should not save if the email is not unique' do
+      it 'should not save if the email already exists (regardless of case)' do
         @user = User.new(first_name: "Mark", last_name: "Wahlberg", email:"test@test.com", password: "markymark", password_confirmation: "markymark")
         @user.save
         @user = User.new(first_name: "Jack", last_name: "Reacher", email:"TEST@TEST.COM", password: "jackyjack", password_confirmation: "jackyjack")
         @user.save
-        expect(@user.errors.full_messages).not_to be_present
+        expect(@user.errors.full_messages).to include("Email has already been taken")
       end
     end
 
