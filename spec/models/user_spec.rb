@@ -72,13 +72,44 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context 'emails must be unique' do
-      it 'should not save if the email already exists (regardless of case)' do
+    context 'if the email already exists regardless of case (emails should be unique)' do
+      it 'should not save ' do
         @user = User.new(first_name: "Mark", last_name: "Wahlberg", email:"test@test.com", password: "markymark", password_confirmation: "markymark")
         @user.save
         @user = User.new(first_name: "Jack", last_name: "Reacher", email:"TEST@TEST.COM", password: "jackyjack", password_confirmation: "jackyjack")
         @user.save
         expect(@user.errors.full_messages).to include("Email has already been taken")
+      end
+    end
+
+  end
+  
+  describe 'Authenticate_with_credentials' do
+  
+    context 'if given an email with the wrong case' do
+      it 'should still login' do
+        @user = User.new(first_name: "Mark", last_name: "Wahlberg", email:"test@TEST.com", password: "markymark", password_confirmation: "markymark")
+        @user.save
+       @loginUser = User.authenticate_with_credentials("TEst@test.com", "markymark")
+       expect(@loginUser).not_to be_nil
+      end
+    end
+
+    context 'if the database email has whitespace at the front and/or back of the email address' do
+      it 'should still login' do
+      @user = User.new(first_name: "Mark", last_name: "Wahlberg", email:"  test@test.com  ", password: "markymark", password_confirmation: "markymark")
+      @user.save
+     @loginUser = User.authenticate_with_credentials("test@test.com", "markymark")
+     expect(@loginUser).not_to be_nil
+      end
+    end
+  
+    context 'if the email from the login form has whitespace at the front and/or back of the email address' do
+      it 'should still login' do
+      @user = User.new(first_name: "Mark", last_name: "Wahlberg", email:"test@test.com", password: "markymark", password_confirmation: "markymark")
+      @user.save
+     @loginUser = User.authenticate_with_credentials("  test@test.com  ", "markymark")
+     expect(@loginUser).not_to be_nil
       end
     end
 
