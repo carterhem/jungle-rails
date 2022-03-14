@@ -23,7 +23,6 @@ RSpec.describe Product, type: :model do
       @product.save
       expect(@product.errors.full_messages).to include("Name can't be blank")
       end
-
     end
     
    
@@ -34,7 +33,6 @@ RSpec.describe Product, type: :model do
       @product.save
       expect(@product.errors.full_messages).to include("Price cents is not a number", "Price is not a number", "Price can't be blank")
       end
-
     end
 
 
@@ -45,7 +43,6 @@ RSpec.describe Product, type: :model do
       @product.save
       expect(@product.errors.full_messages).to include("Quantity can't be blank")
       end
-
     end
 
 
@@ -56,10 +53,8 @@ RSpec.describe Product, type: :model do
       @product.save
       expect(@product.errors.full_messages).to include("Category can't be blank")
       end
-
     end
+
+
   end
-
-
-
 end
