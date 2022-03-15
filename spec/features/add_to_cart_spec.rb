@@ -21,11 +21,11 @@ RSpec.feature "AddToCarts", type: :feature, js: true do
   scenario "They see all products" do
     # ACT
     visit root_path
-    #check cart is zero - expect
-    #click the button
-    #expect that cart is 1
+    expect(page).to have_text 'My Cart (0)'
+    save_screenshot
    click_on("Add", match: :first)
    sleep 5
+   expect(page).to have_text 'My Cart (1)'
     # DEBUG / VERIFY
     save_screenshot
   end
