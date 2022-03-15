@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "User can navigate from home page to product detail page by clicking on a product", type: :feature, js: true do
+RSpec.feature "User clicks on a product", type: :feature, js: true do
   
   # SETUP for products
   before :each do
@@ -20,11 +20,19 @@ RSpec.feature "User can navigate from home page to product detail page by clicki
   scenario "They land on the product detail page" do
     # ACT
     visit root_path
-    click_on 'Details'
+    #loading the original page to run test from
+    find(".product-link", match: :first).click
+    #locating product-link class, first match of, then clicking on it
 
+    sleep 5
+    #this command is for visual screenshot matching ONLY - sleep syntax is not necessary for this test and could be removed as expect will wait until page is properly loaded regardless. Remember, the image being loaded vs the container is a separate call.
+   
+  
     # DEBUG / VERIFY
+    expect(page).to have_css '.main-img'
+    #if image is loaded - continue
     save_screenshot
-    # expect(page).to have_css 'article.product', count: 10
+    expect(page).to have_css 'article.product-detail', count: 1
   end
 
 
