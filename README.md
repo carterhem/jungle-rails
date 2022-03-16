@@ -31,3 +31,12 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 * Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
 * PostgreSQL 9.x
 * Stripe
+
+## Screenshots
+!["Screenshot of Admin Products Page"](https://github.com/carterhem/jungle-rails/blob/master/docs/admin-products.png?raw=true)
+
+!["Screenshot of Cart and Stripe Payment"](https://github.com/carterhem/jungle-rails/blob/master/docs/cart-and-payment.png?raw=true)
+
+!["Screenshot of warning for empty cart when viewing cart page"](https://github.com/carterhem/jungle-rails/blob/master/docs/empty-cart-warning.png?raw=truee)
+
+!["Screenshot of Signup Portal"](https://github.com/carterhem/jungle-rails/blob/master/docs/signup-form.png?raw=true)
